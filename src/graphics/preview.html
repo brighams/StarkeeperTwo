@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PREVIEW - GRAPHICS</title>
+
+  <!-- SEO meta tags -->
+  <meta name="description"
+        content="STARKEEPER.IO">
+  <meta name="keywords"
+        content="STARCASTLE, STARKEEPER, STARKEEPERONE, STARKEEPER ONE, STARKEEPER.IO, BRIGHAM, Star Castle, arcade game, WebGL game, retro game, vector graphics, browser game">
+  <meta name="author" content="Brigham Stevens - STARKEEPER.IO">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../../public/img/starkeeper-64-logo.png">
+  <link rel="apple-touch-icon" href="README.png">
+
+  <!-- Open Graph meta tags for social preview -->
+  <meta property="og:title" content="STARKEEPER TWO: ROGUE">
+  <meta property="og:description"
+        content="Secret Game">
+  <meta property="og:image" content="https://brighams.github.io/StarCastle/README.png">
+  <meta property="og:url" content="https://brighams.github.io/StarCastle/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card meta tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="STARKEEPER TWO">
+  <meta name="twitter:description"
+        content="Secret Game">
+  <meta name="twitter:image" content="https://brighams.github.io/StarKeeperTwo/README.png">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: monospace;
+      color: #fff;
+    }
+
+    #gameContainer {
+      text-align: center;
+      position: relative;
+    }
+
+    #gameCanvas {
+      border: 2px solid #333;
+      background: #000;
+    }
+
+    .info {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .key-bind {
+      color: #ff0088;
+      margin-left: 20px;
+    }
+
+    /* Help icon styles */
+    .help-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      font-weight: bold;
+      color: #00FFFF;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid #00FFFF;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      z-index: 100;
+    }
+
+    .help-icon:hover {
+      background-color: rgba(0, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* Popup styles */
+    .help-popup {
+      display: block;
+      position: absolute;
+      width: auto;
+      height: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+      border: 2px solid #00FFFF;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+      padding: 10px;
+      color: white;
+      font-size: 12px;
+      text-align: left;
+      z-index: 110;
+    }
+
+    .help-icon:hover + .help-popup {
+      display: none;
+      display: block;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+<div id="gameContainer">
+  <h3>STARKEEPER TWO: ROGUE</h3>
+  <h4>Graphics Preview</h4>
+  <canvas id="gameCanvas" width="800" height="800"></canvas>
+
+  <!-- Help icon and popup -->
+  <div id="infoBox" class="help-popup" style="bottom: -20px; right: 252px;">
+    <div>✧ Bwwwoooop </div>
+    <div style="margin-top: 10px; margin-bottom: 20px;">
+      <div
+        style="font-weight: bold;
+        tex-size:18px;
+        margin-left: 10px;
+        margin-bottom: 4px;
+        margin-top:2px; color: #FF0088;">
+        Controls
+      </div>
+      <div><span class="key-bind">W:</span> Forward Thrust</div>
+      <div><span class="key-bind">S:</span> Reverse Thrust</div>
+      <div><span class="key-bind">A:</span> Rotate Left</div>
+      <div><span class="key-bind">D:</span> Rotate Right</div>
+      <div><span class="key-bind">Q:</span> Strafe Lateral Left Thrust</div>
+      <div><span class="key-bind">E:</span> Strafe Lateral Right Thrust</div>
+      <div><span class="key-bind" style="color: #ff5500; font-size: 14px;">Spacebar to Fire Torpedo</span></div>
+    </div>
+  </div>
+
+  <div class="info" style="color:#00FFFF; font-size: 12px; position: relative; bottom: -80px;">
+    <a target="_GITHUB" href="https://github.com/brighams/StarKeeperTwo">View On GitHub</a>
+    |
+    <a href="#" id="resetHighScore" style="color:#FFFF00; font-size: 12px;">Reset High Score</a>
+    <div class="music-info" style="color:#333333; font-size: 12px;">
+      <a target="_UPBEAT" href="https://uppbeat.io/t/d0d/orbit" style="color:#333333; font-size: 12px;">
+        Free Music from #Uppbeat</a>
+      <div style="color:#333333">License code: 8CWB22QJHCXO9EWR</div>
+    </div>
+  </div>
+</div>
+<script type="module" src="./preview.js"></script>
+<script>
+  window.addEventListener('load', () => {
+    const audio = new Audio('sound/orbit-d0d-main-version-29627-02-39.mp3');
+    audio.loop = true;
+    audio.volume = 0.1;
+
+    const startAudio = () => {
+      audio.play().catch(() => {
+      });
+      document.removeEventListener('click', startAudio);
+      document.removeEventListener('keydown', startAudio);
+    };
+
+    document.addEventListener('click', startAudio);
+    document.addEventListener('keydown', startAudio);
+  });
+</script>
+</body>
+</html>
